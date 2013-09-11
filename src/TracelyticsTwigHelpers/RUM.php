@@ -1,12 +1,9 @@
 <?php
 
-namespace Component\Twig;
+namespace TracelyticsTwigHelpers;
 
 use Twig_Extension;
 use Twig_Function_Function;
-use Twig_Environment;
-use CakeFramework\Router;
-use CakeFramework\Locale;
 
 class RUM extends Twig_Extension
 {
@@ -18,19 +15,25 @@ class RUM extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'oboe_get_rum_header' => new Twig_Function_Function(__CLASS__.'::createRumHeader'),
-            'oboe_get_rum_footer' => new Twig_Function_Function(__CLASS__.'::createRumFooter'),
+            'oboe_get_rum_header' => new Twig_Function_Function(__CLASS__.'::createHeader'),
+            'oboe_get_rum_footer' => new Twig_Function_Function(__CLASS__.'::createFooter'),
         );
     }
 
-    public static function createHeader()
+    public static function createHeader($useScriptTags = true)
     {
-        return '...';
+        if (extension_loaded('oboe')) {
+            return oboe_get_rum_header($useScriptTags);
+        }
+        return '';
     }
 
-    public static function createFooter()
+    public static function createFooter($useScriptTags = true)
     {
-        return '...';
+        if (extension_loaded('oboe')) {
+            return oboe_get_rum_footer($useScriptTags);
+        }
+        return '';
     }
 
     public function getName()
