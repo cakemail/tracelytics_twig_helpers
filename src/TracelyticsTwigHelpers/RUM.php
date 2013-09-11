@@ -5,6 +5,11 @@ namespace TracelyticsTwigHelpers;
 use Twig_Extension;
 use Twig_Function_Function;
 
+
+/**
+ * Add functions to Twig to be able to include the Tracelytics Real User Monitoring
+ * @see https://support.tv.appneta.com/support/solutions/articles/86401-php-rum-instrumentation
+ */
 class RUM extends Twig_Extension
 {
     /**
