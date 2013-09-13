@@ -20,8 +20,10 @@ class RUM extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'oboe_get_rum_header' => new Twig_Function_Function(__CLASS__.'::createHeader'),
-            'oboe_get_rum_footer' => new Twig_Function_Function(__CLASS__.'::createFooter'),
+            'oboe_get_rum_header' => new Twig_Function_Function(__CLASS__.'::createHeader',
+                array('is_safe' => array('html'))),
+            'oboe_get_rum_footer' => new Twig_Function_Function(__CLASS__.'::createFooter',
+                array('is_safe' => array('html'))),
         );
     }
 
